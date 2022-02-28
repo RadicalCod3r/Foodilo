@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ resturant.resturant_name|title }}
+{% endblock %}
+
+{% block content %}
+    <div class="single_resturant">
+        <div class="rest_desc">
+            <div class="describtion">
+                <h1>{{ resturant.resturant_name }}</h1>
+                <h3>{{ resturant.rating }}</h3>
+                <p>{{ resturant.user_id.address }}</p>
+            </div>
+            <div class="menu">
+                <h2>Menu</h2>
+                {% for item in menu %}
+                    <div class="food_item">
+                        <img src="{{ item.image_url }}" alt="{{ item.name }}" class="food_image">
+                        <div>{{ item.name }}</div>
+                        <div>{{ item.rating }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="comment">
+                    <h2>{{ comment.customer_id.user_id.username }} (Rating: {{ comment.rating }})</h2>
+                    <p>{{ comment.comment_text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

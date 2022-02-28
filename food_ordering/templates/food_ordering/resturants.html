@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}All Resturants{% endblock %}
+
+{% block content %}
+    <div>
+        <h2 class="title">All Resturants</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Rating</th>
+                <th>Describtion</th>
+            </tr>
+            {% for r in resturants %}
+                <tr>
+                    <td>{{ r.resturant_name }}</td>
+                    <td>{{ r.user_id.address }}</td>
+                    <td>{{ r.rating }}</td>
+                    <td>
+                        <a href="{{ r.get_absolute_url }}">More Info</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h2>Resturants By City</h2>
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Count</th>
+                <th>Describtion</th>
+            </tr>
+            {% for object in cities %}
+                <tr>
+                    <td>{{ object.city_name }}</td>
+                    <td>{{ object.count }}</td>
+                    <td>
+                        <a href="{% url 'by_city' object.city_url %}">More Info</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

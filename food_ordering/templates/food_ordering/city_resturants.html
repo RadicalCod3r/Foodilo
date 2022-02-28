@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Resturants In {{ city|title }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Rating</th>
+                <th>Describtion</th>
+            </tr>
+            {% for r in resturants %}
+                <tr>
+                    <td>{{ r.resturant_name }}</td>
+                    <td>{{ r.user_id.address }}</td>
+                    <td>{{ r.rating }}</td>
+                    <td>
+                        <a href="{{ r.get_absolute_url }}">More Info</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
